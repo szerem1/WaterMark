@@ -64,15 +64,20 @@ namespace WaterMark
         {
             byte[] file = null;
             using (Stream inStream = new MemoryStream())
-            using (Image image = resizeImage(_ImgPhoto, new Size(800, 600)))
+
+            using (Image image = resizeImage(_ImgPhoto, ScaleImage(_ImgPhoto, 640, 480)))
             {
                 for (int i = 0; i < watermarkCollection.Count; i++)
                 {
-                    using (Image watermarkImage = watermarkCollection[i].Image)
+                    WatermarkItem item = watermarkCollection[i];
+
+                    using (Image watermarkImage = item.Image)
                     using (Graphics imageGraphics = Graphics.FromImage(image))
                     using (TextureBrush watermarkBrush = new TextureBrush(watermarkImage))
                     {
-                        WatermarkPoint point = new WatermarkPoint(watermarkCollection[i], 800, 600);
+                        //item.Update(resizeImage(_ImgPhoto, ScaleImage(watermarkCollection[i].Image, 640 / 4, 480 / 4)));
+
+                        WatermarkPoint point = new WatermarkPoint(watermarkCollection[i], image.Width, image.Height);
                         int x = point.X;
                         int y = point.Y;
 
@@ -87,6 +92,36 @@ namespace WaterMark
             }
             return file;
         }
+
+        /// <summary>
+        /// 4912x3264 
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
+
+        private Size GetNewSize(Image image)
+        {
+            bool isVertical = (image.Width < image.Height) ;
+            int width = isVertical ? 640 : 480;
+            int height =isVertical ? 480 : 640 ;
+            return new Size(width, height);
+        }
+
+        public static Size ScaleImage(Image image, int maxWidth, int maxHeight)
+        {
+            var ratioX = (double)maxWidth / image.Width;
+            var ratioY = (double)maxHeight / image.Height;
+            var ratio = Math.Min(ratioX, ratioY);
+
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
+            return new Size(newWidth, newHeight);
+            //var newImage = new Bitmap(newWidth, newHeight);
+            //Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
+            //return newImage;
+        }
+
 
         public static Image resizeImage(Image imgToResize, Size size)
         {

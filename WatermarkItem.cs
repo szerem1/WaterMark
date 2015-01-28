@@ -21,5 +21,11 @@ namespace WaterMark
             Image = image;
             ContentAlignment = contentAlignment;
         }
+
+        public WatermarkItem Update(Image image)
+        {
+            Image = image;
+            return this;
+        }
     }
 }

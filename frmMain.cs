@@ -320,7 +320,6 @@ namespace WaterMark
             this.txtWorkingFolder.Name = "txtWorkingFolder";
             this.txtWorkingFolder.Size = new System.Drawing.Size(274, 20);
             this.txtWorkingFolder.TabIndex = 0;
-            this.txtWorkingFolder.TextChanged += new System.EventHandler(this.txtWorkingFolder_TextChanged);
             // 
             // label1
             // 
@@ -346,7 +345,7 @@ namespace WaterMark
             this.picSource.Location = new System.Drawing.Point(418, 6);
             this.picSource.Name = "picSource";
             this.picSource.Size = new System.Drawing.Size(370, 228);
-            this.picSource.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picSource.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSource.TabIndex = 2;
             this.picSource.TabStop = false;
             // 
@@ -577,36 +576,6 @@ namespace WaterMark
             catch { }
         }
 
-        private void chkWaterMarkImage_CheckedChanged(object sender, System.EventArgs e)
-        {
-            Console.WriteLine("aaa");
-            //if (chkWaterMarkImage.Checked == true && txtWaterMarkImage.Text != null)
-            //{
-            //    txtWaterMarkImage.Enabled = true;
-            //    cmdBrowse2.Enabled = true;
-            //    string fileName = string.Empty;
-
-            //    if (txtWaterMarkImage.Text.Length > 0)
-            //    {
-            //        if (txtWaterMarkImage.Text.Substring(0, 1) == ".")
-            //            fileName = AppDomain.CurrentDomain.BaseDirectory + txtWaterMarkImage.Text.Substring(2);
-            //        else
-            //            fileName = txtWaterMarkImage.Text;
-            //    }
-
-            //    if (File.Exists(fileName))
-            //    {
-            //        picWaterMark.Image = Image.FromFile(fileName);
-            //    }
-            //}
-            //else
-            //{
-            //    txtWaterMarkImage.Enabled = false;
-            //    cmdBrowse2.Enabled = false;
-            //    picWaterMark.Image = null;
-            //    //pt.CopyrightImage = null;
-            //}
-        }
 
         private void lstFileList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
@@ -634,16 +603,6 @@ namespace WaterMark
                 WaterMark wm;
                 string srcPic, dstPic;
 
-
-
-                //new WaterMark(txtWorkingFolder.Text, txtCopyRight.Text, pt.TextPosition, pt.Font, picWaterMark.Image, pt.ImagePosition);
-                //if (chkWaterMarkImage.Checked == true)
-                //    wm = new WaterMark(txtWorkingFolder.Text, txtCopyRight.Text, pt.TextPosition, pt.Font, picWaterMark.Image, pt.ImagePosition);
-                //else
-                //    wm = new WaterMark(txtWorkingFolder.Text, txtCopyRight.Text, pt.TextPosition, pt.Font);
-
-                //wm = new WaterMark(txtWorkingFolder.Text, "AAAA", ContentAlignment.TopLeft, DefaultFont, Image.FromFile("0procent.png"), ContentAlignment.TopRight);
-                //wm = new WaterMark(txtWorkingFolder.Text);
 
                 for (int i = 0; i < lstFileList.CheckedItems.Count; i++)
                 {
@@ -793,25 +752,7 @@ namespace WaterMark
             }
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            //if (tabControl1.SelectedIndex == 1) setWMProperties();
-        }
-
-        private void txtWorkingFolder_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void propertyGrid1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
